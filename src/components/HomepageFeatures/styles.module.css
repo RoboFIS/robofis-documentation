@@ -1,0 +1,63 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.microserviceCard {
+  display: block;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 2px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-card-background-color);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.microserviceCard:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  text-decoration: none;
+  color: inherit;
+}
+
+.microserviceEmoji {
+  font-size: 4rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+.microserviceCol {
+  flex: 0 0 20%;
+  max-width: 20%;
+  padding: 0 var(--ifm-spacing-horizontal);
+}
+
+/* Responsive: en móviles, 1 por fila */
+@media screen and (max-width: 996px) {
+  .microserviceCol {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+}

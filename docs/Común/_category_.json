@@ -1,0 +1,8 @@
+{
+  "label": "Común",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentación sobre el sistema común."
+  }
+}

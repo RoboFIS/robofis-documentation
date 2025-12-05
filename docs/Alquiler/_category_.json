@@ -1,0 +1,8 @@
+{
+  "label": "Alquiler",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentación sobre el sistema de alquier."
+  }
+}
