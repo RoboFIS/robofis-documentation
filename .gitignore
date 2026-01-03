@@ -7,6 +7,10 @@
 # Generated files
 .docusaurus
 .cache-loader
+.pnp.loader.mjs
+.pnp.cjs
+.yarn
+yarn.lock
 
 # Misc
 .DS_Store
