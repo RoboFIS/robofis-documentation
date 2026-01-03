@@ -1,58 +1,66 @@
-# **Declaración de Uso de Herramientas de Inteligencia Artificial**
+# **Declaración sobre el Uso de Asistencia mediante Inteligencia Artificial**
 
-## **1\. Política de Uso**
+## **1. Marco General**
 
-En el desarrollo del presente proyecto (**Microservicio de Alquiler y Orquestación del Sistema RoboFIS**), se han utilizado herramientas de Inteligencia Artificial Generativa (LLMs) siguiendo un principio de **asistencia técnica y optimización**, bajo la estricta supervisión y validación del autor.  
-El uso de estas herramientas se ha limitado a funciones de soporte, depuración y automatización de tareas mecánicas, manteniendo la autoría humana en las decisiones de arquitectura, lógica de negocio y diseño del sistema.
+Durante el desarrollo del presente proyecto (**Microservicio de Stock del sistema RoboFIS**), se ha recurrido a herramientas de Inteligencia Artificial de carácter generativo como **apoyo técnico puntual** dentro del proceso de ingeniería del software.
 
-## **2\. Herramientas Utilizadas**
+Dicho uso se ha realizado siempre bajo la **dirección consciente del autor**, empleando estas herramientas como un medio para mejorar la eficiencia, reducir las tareas repetitivas y facilitar el análisis técnico, sin delegar en ningún momento decisiones críticas de diseño, modelado del dominio o lógica de negocio.
 
-* **Asistentes de Código:** Para sugerencias de sintaxis y autocompletado inteligente.  
-* **Motores de Análisis:** Para la interpretación de trazas de error complejas en entornos de integración continua (CI).
+---
 
-## **3\. Ámbito de Aplicación**
+## **2. Herramientas Empleadas**
 
-La asistencia de la IA se ha focalizado en las siguientes áreas técnicas:
+Las soluciones de Inteligencia Artificial utilizadas durante el proyecto han tenido un rol estrictamente asistencial, incluyendo:
 
-### **A. Refactorización y Estandarización de Código**
+* **ChatGPT** como herramienta orientada a la sugerencia de estructuras de código, patrones habituales y mejoras sintácticas en el código, así como ayuda en la resolución de errores complejos.
 
-Se ha utilizado la IA para acelerar el proceso de "limpieza" y estandarización del código fuente, específicamente:
+Estas herramientas no han operado de forma autónoma ni han generado resultados incorporados directamente sin intervención humana. A continuación, definiremos su uso con más detalle.
 
-* Traducción y unificación de la nomenclatura de variables y métodos al inglés (*naming conventions*).  
-* Adaptación de clases para cumplir con reglas estrictas de *Linter* y *Prettier*.  
-* Eliminación de código muerto y optimización de importaciones.
+---
 
-### **B. Generación de "Boilerplate" y Scaffolding**
+## **3. Áreas de Uso Específicas**
 
-Para reducir el tiempo dedicado a escribir código repetitivo que no aporta valor lógico directo, se ha empleado la IA en:
+La aplicación de asistencia basada en IA se ha limitado a los siguientes ámbitos técnicos:
 
-* Generación de estructuras base para **Tests Unitarios** (creación de Mocks para Jest y configuración de TestModules de NestJS).  
-* Creación de archivos de configuración YAML repetitivos para **Docker Compose** y **GitHub Actions**, basándose en los requisitos de infraestructura definidos por el alumno.  
-* Generación del esqueleto del archivo openapi.yaml a partir de los DTOs ya programados.
+### **A. Mejora Progresiva del Código Fuente**
 
-### **C. Depuración y Resolución de Incidencias (Debugging)**
+La IA se ha empleado como catalizador para acelerar tareas de mejora continua del código, tales como:
 
-La IA ha actuado como herramienta de consulta para acelerar la resolución de errores, tales como:
+* Simplificación de estructuras complejas sin alterar el comportamiento funcional.
+* Optimización de código.
 
-* Análisis de conflictos de versiones en npm (Dependency Hell).  
-* Interpretación de errores de red en la comunicación entre contenedores Docker.  
-* Identificación de errores de tipado estático en TypeScript.
+### **B. Automatización de Estructuras Repetitivas**
 
-### **D. Redacción Técnica y Documentación**
+Con el fin de optimizar el tiempo de desarrollo, se ha utilizado la IA para generar borradores iniciales de:
 
-Se ha utilizado para mejorar la claridad y el tono profesional de la documentación técnica:
+* Casos base de pruebas automatizadas (unitarias, integración y E2E).
+* Esqueletos de comandos, manejadores y DTOs dentro de una arquitectura CQRS.
+* Configuraciones técnicas repetitivas relacionadas con Docker y pipelines de CI/CD.
 
-* Redacción de descripciones para *Pull Requests* siguiendo la convención de *Conventional Commits*.  
-* Sintetización de los pasos de despliegue en los archivos README.md.
+En todos los casos, estos artefactos han sido posteriormente revisados, adaptados y validados manualmente.
 
-## **4\. Verificación y Autoría Humana**
+### **C. Apoyo en la Resolución de Problemas Técnicos**
 
-Se declara explícitamente que:
+La IA ha servido como herramienta de consulta durante la investigación y resolución de incidencias, entre ellas:
 
-1. **Ningún código ha sido introducido en el proyecto sin ser previamente revisado, entendido y validado.**  
-2. La lógica de negocio compleja (Patrón Saga, CQRS, Máquina de Estados de la Reserva, Arquitectura Hexagonal) ha sido diseñada por el autor, utilizando la IA solo para la implementación sintáctica de dichos patrones.  
-3. La responsabilidad final sobre la funcionalidad, seguridad y rendimiento del software recae exclusivamente sobre el alumno.
+* Problemas con el envío y subscripción de mensajes de rabbit tanto en la factoría de test como entre microservicios.
+* Dificultades relacionadas con el mapeo entre modelos de dominio y persistencia.
 
-Firma:  
-\[Jesús Solís Ortega / Microservicio de Alquiler\]  
-Fecha: 18 Diciembre 2025
+### **D. Elaboración de Documentación Técnica**
+
+Asimismo, se ha utilizado la asistencia de IA para mejorar la claridad y organización de la documentación, incluyendo:
+
+* Creación de plantillas para la documentación.
+* Ayuda con el lenguaje técnico.
+
+Igualmente, toda la documentación ha sido revisada y pulida para ser más específica por el autor de esta.
+
+---
+
+## **4. Control, Validación y Responsabilidad**
+
+Se deja constancia de que:
+
+1. Todo el código incorporado al proyecto ha sido **analizado, comprendido y validado** por el autor antes de su inclusión.
+2. Las decisiones relacionadas con la arquitectura del microservicio (modelado del dominio, gestión de estados del robot, eventos, consistencia y patrones aplicados) han sido diseñadas íntegramente por el autor.
+3. La responsabilidad total sobre el funcionamiento, fiabilidad y calidad del software desarrollado recae exclusivamente en el autor del proyecto.
