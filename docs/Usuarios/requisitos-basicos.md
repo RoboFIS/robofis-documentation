@@ -360,5 +360,3 @@ El flujo garantiza que la lógica de negocio nunca dependa de la base de datos:
   * **Flujo**: Antes de los tests, se ejecuta `docker compose up`. Esto crea un entorno limpio y desechable.
   * **Beneficio**: Asegura que si los tests pasan, el código funcionará en producción, eliminando falsos positivos por diferencias entre entornos.
 
-### Diagrama de la Estrategia
- ![Tests](image.png)
