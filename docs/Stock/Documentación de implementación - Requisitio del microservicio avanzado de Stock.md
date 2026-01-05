@@ -33,7 +33,7 @@ Antes de pasar a una definición más extensa de la documentación, se definirá
 - Se ha implementado el patrón circuit breaker en la comunicación con otro microservicio
 - Se ha implementado un mecanismo de autenticación basado en JWT
 - Se ha usado RabbitMQ para realizar una comunicación asíncrona con otros microservicios
-
+- Se ha implementado el patrón Unit Of Work para garantizar la consistencia de transacciones en la base de datos
 
 ---
 
@@ -96,7 +96,7 @@ Antes de pasar a una definición más extensa de la documentación, se definirá
     - Versionado de API haciendo uso del decorador `@Controller` de nest.
 
 - **Endpoints expuestos**:
-  Los endpoints están documentados con swagger y, desde local, se pueden visualizar en http://localhost:3001/api#/, pero se indicarán también a continuación:
+  Los endpoints están documentados con swagger y, desde local, se pueden visualizar en http://localhost:3001/api/v1/docs/stock, pero se indicarán también a continuación:
   - **Zonas**:
     - POST `/zones` -> Creación de una nueva zona
     - GET `/zones` -> Muestra todas las zonas creadas
@@ -116,11 +116,12 @@ Antes de pasar a una definición más extensa de la documentación, se definirá
     - PATCH `/stock-demands/{id}` -> Actualiza el estado de una demanda de stock (PENDING, IN_PROGRESS, COMPLETED o CANCELLED). Cuando una demanda de stock pasa a completed es cuando se crean o mueven los robots.
     - DELETE `/stock-demands/{id}` -> Borra una demanda de stock existente
   - **Disponibilidad**:
-    - GET `/availability` -> Este endpoint solo se expone al microservicio de alquiler para indicar si hay disponibilidad para alquilar un robot en una zona.
+    - GET `/availability` -> Indica los robots disponibles en una zona
   - **Robots**:
+  - - GET `/robots` -> Muestra todos los robots creados
     - GET `/robots/{id}` -> Muestra el detalle de un robot
     - GET `/robots/station/{stationId}` -> Muestra un robot dada una estación
-    - POST `/robots/{id}/decommission` -> Los robots no se borran, sino que se archivan. Este es el endpoint dedicado a ello.
+    - POST `/robots/{id}/decommission` -> Los robots no se borran, sino que se archivan. Este es el endpoint dedicado a ello
 
 ---
 
@@ -285,10 +286,15 @@ Nota: Los validadores están puestos en la capa de aplicación porque no son val
 ## 9) Gestión de errores y consistencia
 
 - **Estrategia**:
-    - Errores de dominio o errores de reglas de negocio lanzan excepciones, que son capturadas en los controladores y convertidas en errores estándar.
-    - Mensajes inválidos no se procesan.
+    - Los errores de dominio o errores de reglas de negocio lanzan excepciones, que son capturadas en los controladores y convertidas en errores estándar.
+    - Los mensajes inválidos no se procesan.
+- **Unit of work**:
+  - Se ha decidido usar el patrón Unit of work para evitar inconsistencia en las transacciones hacia la base de datos. Así, cuando varias entidades son simultáneamente guardadas, se asegura su atomicidad.
 
----
+- **Dónde**:
+  - `stock/infrastructure/mongo/mongo-session-context.ts`
+  - `stock/infrastructure/mongo/mongo-unit-of-work.ts`
+
 
 ## 10) Tests
 
@@ -353,9 +359,7 @@ Nota: Los validadores están puestos en la capa de aplicación porque no son val
 ## 12) Autenticación
 
 - **Implementación**:
-  - Aunque la ApiGateway es la encargada de la autenticación, se ha implementado una doble validación en las llamadas al servicio con JWT, para asegurar de que solamente los usuarios administradores o empleados son los que están realizando peticiones. Aunque no era necesario ya que los endpoints solo están expuestos a la ApiGateway, se ha decidido implementar esta funcionalidad por permitir que este servicio tuviese más independencia del resto
+  - Aunque la ApiGateway es la encargada de la autenticación, se ha implementado (aunque no usado) una posible doble validación que podría añadirse a los endpoints, para asegurar de que solamente los usuarios administradores o empleados son los que están realizando peticiones. No se ha usado porque se ha considerado que no era necesario ya que los endpoints solo están expuestos a la ApiGateway. Se ha decidido implementar la funcionalidad debido a los requisitos básicos del proyecto.
 
 - **Dónde**:
   - `common/infrastructure/auth/*`, `common/infrastructure/decorators`, `common/infrastructure/guards`
-
-
