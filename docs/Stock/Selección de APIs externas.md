@@ -74,7 +74,7 @@ Motor de ruteo de código abierto desplegable en infraestructura propia.
 Servicio de ruteo basado en OpenStreetMap, mantenido por el Heidelberg Institute for Geoinformation Technology.
 
 - **Plan de precios:** https://account.heigit.org/info/plans
-- **Modelo de coste:** Free (Parece que hay que hablar con ellos o tienen mal la web)
+- **Modelo de coste:** Free
 - **Plan gratuito:** Adecuado para desarrollo, pruebas y MVP.
 - **Autenticación:** API Key sencilla.
 - **Ventajas:**
@@ -111,17 +111,30 @@ El uso de APIs comerciales con coste por petición introduce riesgos significati
 
 OpenRouteService permite operar sin costes directos en volúmenes moderados, facilitando el desarrollo continuo y evitando la necesidad de mocks complejos o credenciales sensibles en CI/CD.
 
+**Nota**:
+
+En este punto se deseaba hacer una comparativa de los diferentes tiers de OpenRouteService, pero no se especifica un precio, dando por entendido que para un mayor consumo, habría que hablar con ellos y el consumo sería gratis e ilimitado. 
+
+Por tanto, es una solución ideal para garantizar escalabilidad a largo plazo, ya que uno de sus tiers permite acceso ilimitado. Los tiers se pueden ver en la siguiente dirección: https://account.heigit.org/info/plans
+
+Actualmente se ha escogido el tier Standard para crear nuestro MVP ya que permite un uso limitado aceptable y las peticiones son más que suficientes. En caso de que nuestra aplicación escalase se podría:
+
+a) Cambiar de proveedor y usar alguna de las otras alternativas que hemos comparado en este documento
+
+b) Usar una instalación en local, lo cual requeriría mayor complejidad e infraestructura.
+
+El tier Collaborative se descarta ya que nuestra aplicación es con ánimo de lucro.
+
+
 ---
 
 ### **4.2 Justificación Técnica y Arquitectónica**
 
-Desde el punto de vista arquitectónico, OpenRouteService encaja de forma natural en un diseño basado en **Arquitectura Limpia**:
+Tal y como se ha planteado el uso del servicio usando Arquitectura Limpia, se podrá cambiar el proveedor a futuro con facilidad en el caso de que las necesidades del proyecto variasen ya que:
 
 - El dominio depende de una abstracción de ruteo.
 - OpenRouteService se implementa como un servicio externo.
 - La lógica de negocio permanece desacoplada del proveedor concreto.
-
-Este enfoque permite sustituir el proveedor en el futuro sin impacto sobre el dominio ni los casos de uso.
 
 ---
 
