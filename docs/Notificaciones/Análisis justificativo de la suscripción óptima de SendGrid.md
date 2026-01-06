@@ -15,9 +15,9 @@ Aunque el uso presente es limitado, la naturaleza del proyecto —un servicio di
 - **Plan gratuito**
 - Envío aproximado: **≤ 100 correos/día**
 - Uso principal:
-  - Confirmación de registro
-  - Notificaciones básicas del servicio
-  - Mensajes transaccionales
+  - Correo de bienvenida a la aplicacion
+  - Notificaciones básicas del servicio enviadas de manera manual
+
 
 ### Ventajas del plan gratuito
 - Sin coste económico
