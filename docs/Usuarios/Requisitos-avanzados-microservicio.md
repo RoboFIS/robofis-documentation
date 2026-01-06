@@ -45,10 +45,10 @@ Este documento justifica y explica cómo se ha implementado cada uno de los requ
 
 - **Mecanismo de Sincronización**:
   La actualización de esta vista local se realiza mediante **Eventos de Dominio** asíncronos a través de RabbitMQ:
-  1.  **Recepción de Eventos**: El microservicio escucha eventos como `rental.created` o `rental.finished`.
+  1.  **Recepción de Eventos**: El microservicio escucha eventos como `rental.reservation.created` o `rental.reservation.returned`.
   2.  **Actualización Local**:
-      * Al iniciarse un alquiler, se añade (*push*) el ID de la reserva al array `activeRentals` del usuario.
-      * Al finalizarse, se elimina (*pull*) dicho ID del array.
+      * Al iniciarse un alquiler, se añade  el ID de la reserva al array `activeRentals` del usuario.
+      * Al finalizarse, se elimina dicho ID del array.
   3.  **Consulta**: El endpoint `GET /users` devuelve el usuario con esta lista ya actualizada, permitiendo al frontend saber si el usuario tiene reservas vigentes simplemente verificando si el array contiene elementos.
 
 - **Dónde**:
