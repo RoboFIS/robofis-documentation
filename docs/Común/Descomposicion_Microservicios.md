@@ -33,11 +33,3 @@ Documentación sobre el sistema de stock. Administra el inventario de robots, re
 Documentación sobre el sistema de gestión de usuarios. Maneja la autenticación, autorización y perfiles de los usuarios del sistema.
 
 [Ver documentación](/docs/category/usuarios)
-
-## Documentación común
-
-### Común
-
-Documentación sobre la aplicación completa. Contiene definiciones y utilidades compartidas entre los diversos servicios.
-
-[Ver documentación](/docs/category/Común)
