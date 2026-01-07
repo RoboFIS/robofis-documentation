@@ -24,11 +24,11 @@ Este documento justifica y explica cómo se ha implementado cada uno de los requ
 
 - *Implementación*:
   Para garantizar la *Consistencia Eventual* entre microservicios, se ha implementado el *Patrón SAGA* basado en coreografía (eventos). Este mecanismo permite "deshacer" (compensar) operaciones cuando una parte del proceso distribuido falla.
-  - *Escenario de Alquiler*: El flujo de alquiler implica a los servicios de *Rental, Stock y Usuarios. Si la reserva se crea en Rental pero el pago falla en Usuarios, el sistema debe revertir la reserva.
+  - *Escenario de Alquiler*: El flujo de alquiler implica a los servicios de *Rental, Stock y Usuarios*. Si la reserva se crea en Rental pero el pago falla en Usuarios, el sistema debe revertir la reserva.
   - *Transacción Compensatoria*:
     1. *Evento de Fallo*: Si el cobro de tokens falla, el servicio de Rental publica un evento de dominio payment.reservation.refund_required.
-    2. *Reacción (Compensación)*: El microservicio de *Usuario escucha este evento específico.
-    3. *Ejecución*: Al recibir la notificación de fallo en el pago, el *User Service ejecuta automáticamente una lógica de compensación: busca la reserva asociada, la  elimina de las reservas del usuario y devuelve los tokens al usuario.
+    2. *Reacción (Compensación)*: El microservicio de *Usuario* escucha este evento específico.
+    3. *Ejecución*: Al recibir la notificación de fallo en el pago, el *User Service* ejecuta automáticamente una lógica de compensación: busca la reserva asociada, la  elimina de las reservas del usuario y devuelve los tokens al usuario.
   - *Idempotencia*: Los handlers de compensación están diseñados para ser idempotentes, asegurando que si el evento de fallo llega duplicado, no cause inconsistencias.
 
 - *Dónde*:
