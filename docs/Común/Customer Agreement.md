@@ -57,7 +57,7 @@ Todas las tarifas son no reembolsables, salvo que este Acuerdo disponga lo contr
 
 RoboFIS opera bajo un modelo de **suscripción por planes (tiers)**, ofreciendo además un **periodo de prueba gratuito (free trial)** con funcionalidades limitadas, cuyo alcance será definido y comunicado en el propio Servicio.
 
-### 7.1 Plan Básico – 19 € / mes
+### 7.1 Plan Básico – 9 € / mes
 Incluye:
 - Hasta **1.000 tokens** de uso mensual.  
 - Acceso a **robots de limpieza** y **robots básicos**.  
@@ -67,14 +67,14 @@ Limitaciones:
 - No permite la cancelación de reservas una vez confirmadas.  
 - No incluye acceso a robots intermedios ni premium.
 
-### 7.2 Plan Intermedio – 49 € / mes
+### 7.2 Plan Intermedio – 19 € / mes
 Incluye:
 - Hasta **10.000 tokens** de uso mensual.  
 - Acceso a **robots de limpieza y cocina**.  
 - **Desbloqueo de robots intermedios**.  
 - Posibilidad de **cancelar reservas**, conforme a las condiciones definidas en el Servicio.
 
-### 7.3 Plan Premium – 199 € / mes
+### 7.3 Plan Premium – 49 € / mes
 Incluye:
 - Hasta **50.000 tokens** de uso mensual.  
 - Acceso completo a **robots de limpieza, cocina y shopping**.  
@@ -136,3 +136,4 @@ Si tiene dudas o consultas acerca de este Acuerdo, puede comunicarse con nosotro
 ---
 
 Para utilizar RoboFIS, usted debe confirmar que ha leído, comprendido y acepta los términos de este Acuerdo marcando la casilla correspondiente antes de registrarse en la aplicación.
+
