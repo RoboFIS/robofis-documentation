@@ -32,9 +32,9 @@ Este documento justifica y explica cómo se ha implementado cada uno de los requ
   - *Idempotencia*: Los handlers de compensación están diseñados para ser idempotentes, asegurando que si el evento de fallo llega duplicado, no cause inconsistencias.
 
 - *Dónde*:
-  - *Emisión del Fallo ([Rental Service](https://github.com/RoboFIS/robofis-reserva/))*: src/rental/application/commands/handlers/cancel-rental.handler.ts (Publica el evento si falla la operación).
-  - *Escucha del Evento de Fallo ([User Service](https://github.com/RoboFIS/microservicio-gestionusuario/))*: /src/user/interface/messaging/event_listeners/rental-event.listener.ts. (Listener de 'payment.reservation.refund_required').
-  - *Lógica de Compensación*: src/user/application/commands/handlers/refund-tokens.handler.ts (Lógica que revierte la reserva).
+  - *Emisión del Fallo: ([Rental Service](https://github.com/RoboFIS/robofis-reserva/))*: src/rental/application/commands/handlers/cancel-rental.handler.ts (Publica el evento si falla la operación).
+  - *Escucha del Evento de Fallo: ([User Service](https://github.com/RoboFIS/microservicio-gestionusuario/))*: /src/user/interface/messaging/event_listeners/rental-event.listener.ts. (Listener de 'payment.reservation.refund_required').
+  - *Lógica de Compensación ([User Service](https://github.com/RoboFIS/microservicio-gestionusuario/))*:  src/user/application/commands/handlers/refund-tokens.handler.ts (Lógica que revierte la reserva).
 
 
 ## 3) Hacer uso de un API Gateway con autenticación
