@@ -40,4 +40,4 @@ Documentación sobre el sistema de gestión de usuarios. Maneja la autenticació
 
 Documentación sobre la aplicación completa. Contiene definiciones y utilidades compartidas entre los diversos servicios.
 
-[Ver documentación](/docs/Común)
+[Ver documentación](/docs/category/Común)
