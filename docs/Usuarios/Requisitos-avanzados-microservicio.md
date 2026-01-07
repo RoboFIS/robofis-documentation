@@ -128,7 +128,7 @@ Este documento justifica y explica cómo se ha implementado cada uno de los requ
   - Contiene la lógica de conexión con `api.dicebear.com`. Utiliza `axios.get(url)` para validar la respuesta del servidor externo antes de devolver la cadena de texto.
 
   * **Orquestación (Command Handler)**
-  *Archivo:* `src/user/application/commands/create-user.handler.ts`
+  *Archivo:* `src/user/application/commands/handlers/create-user.handler.ts`
   - Dentro del flujo transaccional `execute`, se invoca al servicio de avatares para obtener la URL justo antes de fabricar la entidad `User` y persistirla, asegurando que ningún usuario se cree sin imagen de perfil.
 
 
