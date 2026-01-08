@@ -3,9 +3,9 @@
 Los análisis de esfuerzos individuales se encuentran en:
 
 ### Francisco Sebastián Benítez Ruis Díaz
-[Descargar PDF](/Esfuerzos/FranciscoSebastianBenitezRuisDiaz.pdf)
+[Descargar PDF](/static/Esfuerzos/FranciscoSebastianBenitezRuisDiaz.pdf)
 
 
 ### María Márquez Sierra
-[Descargar PDF](/Esfuerzos/MariaMarquezSierra.pdf)
+[Descargar PDF](static/Esfuerzos/MariaMarquezSierra.pdf)
 
