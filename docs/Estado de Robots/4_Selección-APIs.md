@@ -14,10 +14,10 @@ Se considera óptima la opción que, para el volumen esperado (entorno académic
 - **Coste esperado y previsibilidad**: existencia de tramo gratuito suficiente (free tier) y política clara de facturación.
 - **Cuotas incluidas**: volumen mensual/diario incluido para “map rendering” y “routing”.
 - **Rate limits**: límites por minuto/segundo documentados y comportamiento ante excedentes (429 + headers).
-- **Esfuerzo de integración y mantenimiento**: coste de migración, SDKs, cambios en backend/frontend.
 - **Riesgo de disponibilidad**: riesgo de bloqueo/limitaciones (p.ej. servicios comunitarios sin SLA).
+- **Esfuerzo de integración y mantenimiento**: coste de integrar SDKs, autenticar (API keys), adaptar frontend/backend, y mantener la solución (cambios de APIs, migraciones de planes, observabilidad y control de consumo).
 
-## 3. Comparativa resumida (lo relevante para este proyecto)
+## 3. Comparativa resumida
 
 | Opción | Mapas (frontend) | Rutas (backend) | Free tier publicado | Riesgo principal |
 |---|---|---|---|---|
@@ -28,17 +28,40 @@ Se considera óptima la opción que, para el volumen esperado (entorno académic
 | HERE | Sí | Sí | Free tier por API, pero restricciones desconocidos | Detalle numérico puede ser menos directo; Esfuerzo adicional para validar costes/cuotas reales. |
 | OpenStreetMap tiles (OSMF) | Sí (tiles) | No (routing) | No es “free tier comercial”: es servicio comunitario | La Tile Usage Policy limita prefetch/bulk y exige caching y User-Agent correcto; servicio puede bloquear tráfico sin aviso. |
 
+###  Comparación de Cuotas y Rate Limit
+
+|  | Mapbox | Google Maps Platform | TomTom | OpenRouteService (HeiGIT) |
+|---|---|---|---|---|
+| Mapas cuota | 50k map loads/mes | p.ej. “Dynamic Maps” 10k/mes | 50k tile requests/día | N/A (no ofrece mapas) |
+| Routing cuota | 100k directions requests/mes | Depende del SKU (p.ej. “Routes: Compute Routes Essentials” 10k/mes) | 2.5k non-tile requests/día | 2000/día (Directions V2) |
+| Routing rate limit | 300 req/min (por token) | 3,000 QPM (Compute Routes) | 5 QPS (Routing API) | 40/min (Directions V2) |
+
 Fuentes:
 - Mapbox pricing: https://www.mapbox.com/pricing/
 - Mapbox rate limits: https://docs.mapbox.com/api/guides/#rate-limits
 - Google price list: https://developers.google.com/maps/billing-and-pricing/pricing
+- Google Routes API usage limits: https://developers.google.com/maps/documentation/routes/usage-and-billing#usage_limits
 - ORS plans: https://account.heigit.org/info/plans
 - TomTom pricing: https://developer.tomtom.com/pricing
+- TomTom default QPS limits: https://developer.tomtom.com/default-qps
 - OSM tile policy: https://operations.osmfoundation.org/policies/tiles/
 
-## 4. Recomendación: mantener Mapbox en Free Tier (suscripción óptima para el proyecto)
+## 4. Recomendación: Mapbox en el Free Tier
 
-### 5.1 Por qué Mapbox Free Tier es óptimo aquí
+
+### 4.1 Comparativa de tiers de Mapbox (visión práctica)
+
+Mapbox ofrece distintas modalidades/tiers que, a efectos de toma de decisión, se pueden resumir así (los nombres exactos y cifras pueden variar según la web oficial y el contrato):
+
+| Tier / modalidad | Coste | Cuándo tiene sentido | Implicaciones para RoboFIS |
+|---|---:|---|---|
+| **Free Tier / nivel gratuito** | €0 | Prototipos, demos, entorno académico, MVP con uso moderado | Minimiza coste; suficiente si el consumo se mantiene dentro de lo incluido; requiere vigilar cuotas y rate limits. |
+| **Pay-as-you-go (pago por uso)** | Variable | Cuando se supera el uso incluido o se necesita crecer gradualmente | Mantiene el mismo proveedor e integración; introduce riesgo de coste si no se controla consumo/telemetría. |
+| **Enterprise / contrato** | Alto (negociado) | Producción con SLA, soporte, requisitos legales/seguridad o volumen elevado | Excesivo para el alcance académico; añade complejidad contractual y operativa. |
+
+Fuente de referencia: https://www.mapbox.com/pricing/
+
+### 4.2 Por qué Mapbox Free Tier es óptimo aquí
 
 1) **Cubre ambas necesidades con un solo proveedor** (mapas + rutas), reduciendo complejidad operacional y documentación.
    - Mapbox tiene “Maps” y “Navigation / Directions API” con tramos gratuitos publicados: https://www.mapbox.com/pricing/
@@ -52,13 +75,17 @@ Fuentes:
    - Permite diseñar limitación interna (ya implementada en el backend) y aislar entornos con tokens distintos.
    - Fuente: https://docs.mapbox.com/api/guides/#rate-limits
 
-4) **Mejor “headroom” frente a varias alternativas en gratis**:
+4) **Encaje coste/beneficio para un entorno académico**:
+   - El objetivo del proyecto es funcionalidad y demostración (no SLA contractual).
+   - El free tier reduce al mínimo el riesgo financiero, manteniendo la opción de escalar a pago por uso si el consumo real crece.
+
+5) **Mejor “headroom” frente a varias alternativas en gratis**:
    - Google (según price list) ofrece free usage típico de 10k/mes por SKU para mapas/rutas en varias tablas; esto puede ser menor margen que 50k/100k de Mapbox para este caso.
    - Fuente: https://developers.google.com/maps/billing-and-pricing/pricing
    - ORS Standard tiene 2000/día para rutas, lo cual puede ser suficiente pero ofrece menos holgura y además no cubre mapas.
    - Fuente: https://account.heigit.org/info/plans
 
-### 5.2 Condiciones y límites (para que la decisión sea responsable)
+### 4.3 Condiciones y límites (para que la decisión sea responsable)
 
 - **No “inventar capacidad”**: el free tier puede cambiar; conviene revisar periódicamente el pricing oficial.
 - **No superar 300 req/min** en Directions (y respetar 429 + backoff). El backend ya incorpora rate limiting interno.
