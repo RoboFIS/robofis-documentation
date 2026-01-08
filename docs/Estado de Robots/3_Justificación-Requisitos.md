@@ -62,12 +62,13 @@ Las operaciones de nuestra API se comparten entre el frontend de nuestro micro (
 | `GET /robots/:id` | x | x | `src\pages\RobotStatus.tsx` |
 | `POST /robots/inject` | x |  | `src\stock\application\services\stock-demand.execution.service.ts line 149` |
 | `PUT /robots/:id` | x |  | `src\stock\application\services\stock-demand.execution.service.ts line  94` |
-| `DELETE /robots/:id` | x |  | `` |
+| `DELETE /robots/:id` | x |  | `src\stock\application\commands\robots\decommission-robot.command.handler.ts` |
 | `POST /robots/:id/decommission` | x |  | `src\stock\application\commands\robots\decommission-robot.command.handler.ts line 27` |
-| `POST /robot-logs` |  |  | `` |
-| `GET /robot-logs` |  |  | `` |
-| `GET /robot-logs/:id` |  |  | `` |
-| `GET /robots/:robotId/logs` |  |  | `` |
+| `POST /robot-logs` |  | x | `src/pages/RobotLogsPage.tsx` |
+| `GET /robot-logs` |  | x | `src/pages/RobotLogsPage.tsx` |
+| `GET /robot-logs/:id` |  | x | `src/pages/RobotLogsPage.tsx` |
+| `GET /robots/:robotId/logs` |  | x | `src/pages/RobotLogsPage.tsx` |
+
 
 ---
 
