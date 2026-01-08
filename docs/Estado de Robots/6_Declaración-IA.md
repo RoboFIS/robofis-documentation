@@ -16,10 +16,10 @@ Se han utilizado herramientas de **IA generativa (LLMs)** como apoyo para mejora
 
 Modelos (LLMs) usados:
 
-> GPT-5
-> GPT-5.2
-> Claude Sonnet 4.5
-> Claude Opus 4.5
+- GPT-5
+- GPT-5.2
+- Claude Sonnet 4.5
+- Claude Opus 4.5
 
 
 ## 3. Principales usos dentro del proyecto
