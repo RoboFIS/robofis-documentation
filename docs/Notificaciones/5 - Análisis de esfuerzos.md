@@ -3,7 +3,9 @@
 Los análisis de esfuerzos individuales se encuentran en:
 
 ### Francisco Sebastián Benítez Ruis Díaz
-[Descargar PDF](/RoboFIS/robofis-documentation/static/Esfuerzos/FranciscoSebastianBenitezRuisDiaz.pdf)
+
+[Descargar PDF](/Esfuerzos/FranciscoBenitezRuisDiaz.pdf)
 
 ### María Márquez Sierra
-[Descargar PDF](/RoboFIS/robofis-documentation/static/Esfuerzos/MariaMarquezSierra.pdf)
+
+[Descargar PDF](/Esfuerzos/MariaMarquezSierra.pdf)
