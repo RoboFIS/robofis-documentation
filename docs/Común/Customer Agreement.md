@@ -90,26 +90,57 @@ Cualquier modificación en los precios o condiciones de los planes será comunic
 
 ---
 
-## 8. Propiedad Intelectual
+## 8. Add-ons y Paquetes de Tokens
+
+RoboFIS ofrece **add-ons opcionales** que permiten ampliar la capacidad de uso más allá de la asignación mensual incluida en su plan de suscripción. Estos add-ons están diseñados para usuarios que requieren mayor flexibilidad y volumen de operaciones.
+
+### 8.1 Compra de Paquetes de Tokens (Add-on)
+
+Los usuarios pueden adquirir **paquetes adicionales de tokens** en cualquier momento, independientemente de su plan de suscripción activo. Estos tokens se suman al saldo existente del usuario y pueden utilizarse inmediatamente.
+
+**Características:**
+- **Compra Opcional**: La adquisición de tokens adicionales es completamente voluntaria y no está vinculada a la renovación del plan de suscripción.
+- **Suma al Saldo**: Los tokens adquiridos se añaden al saldo actual del usuario, permitiendo acumular capacidad de uso.
+- **Sin Expiración**: Los tokens comprados no tienen fecha de caducidad y permanecen disponibles hasta su uso.
+- **Disponibilidad Universal**: Todos los planes (Básico, Intermedio y Premium) pueden adquirir paquetes de tokens adicionales.
+
+**Proceso de Compra:**
+1. El usuario accede a la sección de "Precios" o "Comprar Tokens" dentro del Servicio.
+2. Selecciona el paquete de tokens deseado.
+3. Completa el proceso de pago a través de la pasarela de pagos integrada.
+4. Los tokens se añaden automáticamente a su cuenta tras la confirmación del pago.
+
+**Nota Importante:**
+- Los tokens adquiridos mediante add-ons son **complementarios** a los tokens incluidos en el plan de suscripción mensual.
+- La compra de tokens adicionales **no modifica** el plan de suscripción activo ni sus características funcionales (acceso a robots, cancelaciones, etc.).
+- RoboFIS se reserva el derecho de modificar los precios de los paquetes de tokens, comunicando cualquier cambio con una antelación mínima de **7 días**.
+
+### 8.2 Otros Add-ons Futuros
+
+RoboFIS se reserva el derecho de ofrecer otros tipos de add-ons adicionales en el futuro, que podrán incluir funcionalidades extendidas, servicios premium o capacidades especiales. Estos add-ons serán comunicados a los usuarios a través del Servicio y estarán sujetos a términos y condiciones específicos que se detallarán en el momento de su lanzamiento.
+
+---
+
+## 9. Propiedad Intelectual
 
 Todo el contenido y los materiales disponibles en el Servicio son propiedad intelectual de RoboFIS o de sus licenciantes, y están protegidos por las leyes de derechos de autor y otras normativas sobre propiedad intelectual.
 
 ---
 
-## 9. Terminación
+## 10. Terminación
 
 Cualquiera de las partes podrá dar por terminado este Acuerdo si la otra incumple alguna de las condiciones establecidas en el mismo.
 
 ---
 
-## 10. Limitación de Responsabilidad
+## 11. Limitación de Responsabilidad
 
 RoboFIS no asumirá responsabilidad alguna por el uso indebido de la aplicación por parte de los usuarios.  
 Cada usuario es responsable de utilizar el servicio de manera adecuada.
 
 ---
 
-## 11. Validez y Revisión del Acuerdo
+## 12. Validez y Revisión del Acuerdo
 
 El presente Acuerdo entra en vigor en la fecha indicada y permanecerá vigente hasta nuevo aviso.  
 Será revisado, como mínimo, una vez por ejercicio fiscal; la fecha de revisión coincidirá con la de entrada en vigor. Mientras no se realicen modificaciones, el Acuerdo continuará siendo válido.
@@ -122,13 +153,13 @@ Si no están conformes, podrán dejar de utilizar nuestros servicios.
 
 ---
 
-## 12. Ley Aplicable
+## 13. Ley Aplicable
 
 Este Acuerdo se regirá por la legislación española, salvo que entre en conflicto con los derechos del consumidor del país de residencia del usuario.
 
 ---
 
-## 13. Información de Contacto
+## 14. Información de Contacto
 
 Si tiene dudas o consultas acerca de este Acuerdo, puede comunicarse con nosotros a través del correo:  
 **robofis.soporte@gmail.com** *(correo ficticio)*
