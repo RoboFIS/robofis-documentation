@@ -2,5 +2,10 @@
 
 Los análisis de esfuerzos individuales se encuentran en:
 
-- `Análisis de esfuerzos - Francisco Javier Ruiz.pdf`
-- `Análisis de esfuerzos - Pablo Oliva.pdf`
+### Francisco Javier Ruiz
+[Descargar PDF](/Esfuerzos/FranciscoJavierRuiz.pdf)
+
+
+### Pablo Oliva
+[Descargar PDF](/Esfuerzos/PabloOlivaMuñoz.pdf)
+
