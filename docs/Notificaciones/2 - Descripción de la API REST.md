@@ -1,6 +1,7 @@
 # Descripción de la API REST
 
 ## Descripción General
+
 El Microservicio de Notificaciones se basa en una API REST, basada a su vez en NestJS que gestiona notificaciones orientadas a eventos en toda la plataforma RoboFIS. Recibe eventos de dominio desde RabbitMQ (mediante el intercambio de temas `robofis.events`), almacena notificaciones en MongoDB y proporciona puntos finales HTTP para recuperación, gestión y envío de correos electrónicos.
 
 **URL Base:** `/api/v1`  
@@ -19,7 +20,7 @@ El Microservicio de Notificaciones se basa en una API REST, basada a su vez en N
 
 - **Almacenamiento Persistente**: MongoDB almacena todas las notificaciones con marcas de tiempo, estado de lectura, niveles de severidad y seguimiento de origen
 
-- **Entrega Multicanal**: 
+- **Entrega Multicanal**:
   - Notificaciones en la aplicación (almacenadas en la base de datos)
   - Notificaciones por correo electrónico mediante integración SendGrid
   - Notificaciones manuales del administrador
@@ -34,12 +35,14 @@ El Microservicio de Notificaciones se basa en una API REST, basada a su vez en N
 ## Endpoints de la API REST
 
 ### 1. **Crear Notificación**
+
 ```
 POST /api/v1/notifications
 Content-Type: application/json
 ```
 
 **Cuerpo de la Solicitud:**
+
 ```json
 {
   "targetAudience": "CLIENT|EMPLOYEE",
@@ -53,6 +56,7 @@ Content-Type: application/json
 ```
 
 **Respuesta:** `201 Created`
+
 ```json
 {
   "_id": "507f1f77bcf86cd799439011",
@@ -71,11 +75,13 @@ Content-Type: application/json
 ---
 
 ### 2. **Obtener Todas las Notificaciones**
+
 ```
 GET /api/v1/notifications
 ```
 
 **Respuesta:** `200 OK`
+
 ```json
 [
   { notificacion_objeto_1 },
@@ -86,14 +92,17 @@ GET /api/v1/notifications
 ---
 
 ### 3. **Obtener Notificación por ID**
+
 ```
 GET /api/v1/notifications/{id}
 ```
 
 **Parámetros de Ruta:**
+
 - `id` (string, requerido): ID de notificación de MongoDB
 
 **Respuesta:** `200 OK`
+
 ```json
 {
   "_id": "507f1f77bcf86cd799439011",
@@ -104,17 +113,20 @@ GET /api/v1/notifications/{id}
 ```
 
 **Respuestas de Error:**
+
 - `404 Not Found` - Notificación con el ID dado no existe
 
 ---
 
 ### 4. **Actualizar Notificación**
+
 ```
 PATCH /api/v1/notifications/{id}
 Content-Type: application/json
 ```
 
 **Cuerpo de la Solicitud (todos los campos opcionales):**
+
 ```json
 {
   "message": "Mensaje actualizado",
@@ -125,6 +137,7 @@ Content-Type: application/json
 ```
 
 **Respuesta:** `200 OK`
+
 ```json
 {
   "_id": "507f1f77bcf86cd799439011",
@@ -136,17 +149,20 @@ Content-Type: application/json
 ```
 
 **Respuestas de Error:**
+
 - `400 Bad Request` - Carga útil inválida
 - `404 Not Found` - Notificación no encontrada
 
 ---
 
 ### 5. **Eliminar Notificación**
+
 ```
 DELETE /api/v1/notifications/{id}
 ```
 
 **Respuesta:** `200 OK`
+
 ```json
 {
   "message": "Notificación eliminada exitosamente"
@@ -154,19 +170,23 @@ DELETE /api/v1/notifications/{id}
 ```
 
 **Respuestas de Error:**
+
 - `404 Not Found` - Notificación no encontrada
 
 ---
 
 ### 6. **Obtener Historial de Notificaciones del Usuario**
+
 ```
 GET /api/v1/notifications/user/{userId}
 ```
 
 **Parámetros de Ruta:**
+
 - `userId` (string, requerido): ID de usuario para el cual recuperar notificaciones
 
 **Respuesta:** `200 OK`
+
 ```json
 [
   {
@@ -183,11 +203,13 @@ GET /api/v1/notifications/user/{userId}
 ---
 
 ### 7. **Marcar Notificación como Leída**
+
 ```
 PUT /api/v1/notifications/{id}/read
 ```
 
 **Respuesta:** `200 OK`
+
 ```json
 {
   "_id": "507f1f77bcf86cd799439011",
@@ -200,11 +222,13 @@ PUT /api/v1/notifications/{id}/read
 ---
 
 ### 8. **Obtener Demandas de Stock Pendientes (Administrador)**
+
 ```
 GET /api/v1/notifications/admin/demands
 ```
 
 **Respuesta:** `200 OK`
+
 ```json
 [
   {
@@ -222,11 +246,13 @@ GET /api/v1/notifications/admin/demands
 ---
 
 ### 9. **Obtener Incidentes Críticos de Robots (Administrador)**
+
 ```
 GET /api/v1/notifications/admin/incidents
 ```
 
 **Respuesta:** `200 OK`
+
 ```json
 [
   {
@@ -244,12 +270,14 @@ GET /api/v1/notifications/admin/incidents
 ---
 
 ### 10. **Enviar Notificación Manual (Administrador)**
+
 ```
 POST /api/v1/notifications/send/manual
 Content-Type: application/json
 ```
 
 **Cuerpo de la Solicitud:**
+
 ```json
 {
   "targetAudience": "CLIENT",
@@ -260,6 +288,7 @@ Content-Type: application/json
 ```
 
 **Respuesta:** `201 Created`
+
 ```json
 {
   "_id": "507f1f77bcf86cd799439014",
@@ -276,12 +305,14 @@ Content-Type: application/json
 ---
 
 ### 11. **Enviar Correo Electrónico Urgente**
+
 ```
 POST /api/v1/notifications/send/email
 Content-Type: application/json
 ```
 
 **Cuerpo de la Solicitud:**
+
 ```json
 {
   "to": "usuario@example.com",
@@ -293,6 +324,7 @@ Content-Type: application/json
 **Respuesta:** `202 Accepted`
 
 **Detalles:**
+
 - Correo electrónico enviado de forma asincrónica a través de SendGrid
 - Asunto prefijado con "URGENTE: "
 - El estado de respuesta `202` indica aceptación para entrega
@@ -322,6 +354,7 @@ interface Notificacion {
 ## Manejo de Errores
 
 ### Filtro Global de Excepciones
+
 El servicio incluye un `MongooseExceptionFilter` que captura errores de validación/consulta de MongoDB y devuelve respuestas de error estandarizadas.
 
 ### Códigos de Estado HTTP Comunes
@@ -332,8 +365,11 @@ El servicio incluye un `MongooseExceptionFilter` que captura errores de validaci
 | `201 Created` | Recurso creado exitosamente |
 | `202 Accepted` | Solicitud aceptada para procesamiento asincrónico (correo) |
 | `400 Bad Request` | Entrada inválida/validación fallida |
+| `401 Unauthorized` | Autenticación fallida o token faltante (API Gateway) |
+| `403 Forbidden` | Usuario no autorizado para realizar la acción (API Gateway) |
 | `404 Not Found` | Recurso no encontrado |
 | `500 Internal Server Error` | Error inesperado del servidor |
+| `502 Bad Gateway` | Error de conexión con el microservicio subyacente (API Gateway) |
 
 ---
 
@@ -346,7 +382,9 @@ El servicio incluye un `MongooseExceptionFilter` que captura errores de validaci
 ---
 
 ### Documentación de la API
+
 Documentación interactiva de Swagger disponible en:
+
 ```
 http://localhost:3000/api/v1/docs/notifications
 ```
@@ -356,12 +394,14 @@ http://localhost:3000/api/v1/docs/notifications
 ## Integración
 
 ### Con Otros Microservicios
+
 1. **Servicio de Alquiler** → Publica eventos `rental.*`
 2. **Servicio de Usuarios** → Publica eventos `users.*`
 3. **Servicio de Stock** → Publica eventos `stock.*`
 4. **Servicio de Estado de Robot** → Publica eventos `status.*`
 
 ### Con Servicios Externos
+
 1. **SendGrid** → Entrega de correos electrónicos para notificaciones urgentes
 2. **MongoDB** → Almacenamiento persistente de notificaciones
 3. **RabbitMQ** → Consumo de eventos y enrutamiento de mensajes
