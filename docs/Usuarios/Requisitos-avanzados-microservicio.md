@@ -40,7 +40,19 @@ Este documento justifica y explica cómo se ha implementado cada uno de los requ
       * Autenticación Real: Obtención de Token JWT válido vía `/auth/login` y uso del mismo para peticiones protegidas (Update Address/Phone).
   2.  **Event-Driven Testing (RabbitMQ)**:
       * **Verificación de Publicación (Spy Queue)**: Al actualizar datos del perfil, el test realiza *polling* a una cola espía en RabbitMQ para asegurar que el evento `user.address.updated` ha sido emitido correctamente al bus.
-      * **Consumo de Eventos Externos**: Se simula la publicación de un evento `rental.reservation.created` en el Exchange y se verifica (consultando la DB) que el microservicio de Usuarios reacciona actualizando su array de `activeRentals`.
+### B. Pruebas Out-of-Process (Integración Estricta / E2E)
+
+Se ha implementado una suite de **Integración Real** que levanta la aplicación completa, conectándose a instancias reales de **MongoDB** y **RabbitMQ** (via Docker/TestContainers).
+
+* **Flujo HTTP & Persistencia:**
+    * Registro de Usuario (`POST /users`) y verificación inmediata de persistencia en MongoDB.
+    * **Autenticación Real:** Obtención de Token JWT válido vía `/auth/login` y uso del mismo para peticiones protegidas (Update Address/Phone).
+
+* **Event-Driven Testing (RabbitMQ):**
+    * **Verificación de Publicación (Spy Queue):** Al actualizar datos del perfil, el test realiza *polling* a una cola espía en RabbitMQ para asegurar que el evento `user.address.updated` ha sido emitido correctamente al bus.
+    * **Consumo de Eventos y Ciclo de Vida (State Consistency):** Se valida la reacción y consistencia del sistema ante eventos externos:
+        1. **Vinculación (`created`):** Se simula `rental.reservation.created` y se verifica la sincronización del estado (inserción del ID en `activeRentals`).
+        2. **Desvinculación y Limpieza (`returned`):** Se valida el cierre del ciclo de alquiler emitiendo `rental.reservation.returned`, verificando que el sistema **purga correctamente** el ID de la reserva activa, garantizando que no persistan datos obsoletos (*stale data*) en el perfil del usuario.
 
 - **Dónde**:
   * **Unitarias**: `test/integration/*.spec.ts`.
