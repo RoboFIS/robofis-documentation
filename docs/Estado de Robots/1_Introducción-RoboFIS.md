@@ -19,7 +19,7 @@ Resumen comparativo del tiempo total invertido por los dos miembros del equipo e
 
 | Miembro | Horas totales |
 | --- | ---: |
-| Antonio Manuel Solís Miranda | 78 horas |
+| Antonio Manuel Solís Miranda | 82,75 horas |
 | Tim Lindner | 78 horas |
 
-**Total (equipo):** 146 horas
+**Total (equipo):** 160,75 horas
