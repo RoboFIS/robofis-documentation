@@ -33,16 +33,8 @@ Este documento justifica y explica cómo se ha implementado cada uno de los requ
       * *(Positivo)* `ConsumeUserTokensHandler` decrementa saldo y confirma la transacción atómica.
 
   ### B. Pruebas Out-of-Process (Integración Estricta / E2E)
+
   Se ha implementado una suite de **Integración Real** que levanta la aplicación completa, conectándose a instancias reales de **MongoDB** y **RabbitMQ** (via Docker/TestContainers).
-
-  1.  **Flujo HTTP & Persistencia**:
-      * Registro de Usuario (`POST /users`) y verificación inmediata de persistencia en MongoDB.
-      * Autenticación Real: Obtención de Token JWT válido vía `/auth/login` y uso del mismo para peticiones protegidas (Update Address/Phone).
-  2.  **Event-Driven Testing (RabbitMQ)**:
-      * **Verificación de Publicación (Spy Queue)**: Al actualizar datos del perfil, el test realiza *polling* a una cola espía en RabbitMQ para asegurar que el evento `user.address.updated` ha sido emitido correctamente al bus.
-### B. Pruebas Out-of-Process (Integración Estricta / E2E)
-
-Se ha implementado una suite de **Integración Real** que levanta la aplicación completa, conectándose a instancias reales de **MongoDB** y **RabbitMQ** (via Docker/TestContainers).
 
 * **Flujo HTTP & Persistencia:**
     * Registro de Usuario (`POST /users`) y verificación inmediata de persistencia en MongoDB.
@@ -58,9 +50,6 @@ Se ha implementado una suite de **Integración Real** que levanta la aplicación
   * **Unitarias**: `test/integration/*.spec.ts`.
   * **E2E**: `test/e2e/app.e2e.spec.ts` (Archivo único con setup/teardown de infraestructura MongoDB y RabbitMQ).
   * **Configuración**: `test/jest-e2e.json` y scripts de `package.json`.
-
-
-
 
 ## 2) Implementar un frontend con rutas y navegación
 
