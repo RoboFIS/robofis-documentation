@@ -180,14 +180,14 @@ Incluye endpoints, ejemplos de request/response, códigos de error y variables d
 
 **Justificación y evidencias:**
 
-- Existe un workflow de GitHub Actions en [.github/workflows/ci-cd.yml](.github/workflows/ci-cd.yml) a nivel de repositorio (fuera de `micro_template/`), que orquesta CI/CD para esta carpeta usando `working-directory: ./micro_template`.
+- Existe un workflow de GitHub Actions en .github/workflows/ci-cd.yml a nivel de repositorio (fuera de `micro_template/`), que orquesta CI/CD para esta carpeta usando `working-directory: ./micro_template`.
 - Disparadores: `push` y `pull_request` a ramas `main` y `develop`, filtrando cambios bajo `micro_template/**`.
 - Jobs del pipeline:
   - Test: levanta servicios `mongodb` y `rabbitmq`; instala dependencias con Node 20 (`npm ci`); ejecuta `npm run lint` (sin fallar el job por errores), `npm test` y `npm run test:e2e` con variables de entorno (`MONGO_URI`, `RABBITMQ_URL`, `PORT`, etc.).
   - Build: ejecuta `npm run build` y verifica la existencia de `dist/`.
   - Docker (validación): construye la imagen `microservicio-estado:${{ github.sha }}`.
   - Deploy (solo en `push` a `develop` o `main`): usa Buildx, hace login en Docker Hub y publica con etiquetas `latest`, `develop-<sha>` y `develop-YYYYMMDD-HHmmss`.
-- Los scripts utilizados residen en [micro_template/package.json](micro_template/package.json).
+- Los scripts utilizados residen en micro_template/package.json.
 
 ---
 
@@ -197,14 +197,14 @@ Incluye endpoints, ejemplos de request/response, códigos de error y variables d
 
 **Justificación y evidencias:**
 
-- Pruebas in-process (unidad/componentes) bajo [test/in_process](test/in_process):
-  - [test/in_process/robot.entity.spec.ts](test/in_process/robot.entity.spec.ts): valida reglas de dominio del `Robot` (rangos de `battery` y `speed`, cardinalidad de `zoneCoordinates`, `mode` válido, `stationId` no vacío) con escenarios negativos y positivos; además prueba getters `isOnMission` e `isAtStation`.
-  - [test/in_process/defect-history.spec.ts](test/in_process/defect-history.spec.ts): verifica creación/validación de `DefectHistory` (fechas válidas, resolved/resolvedAt/resolvedBy), mutaciones inmutables `addDefect()` y `resolveDefect()`, y consultas `getUnresolvedDefects()` y `hasCriticalDefects()` con casos positivos y negativos.
-  - [test/in_process/point-in-polygon.spec.ts](test/in_process/point-in-polygon.spec.ts): comprueba utilidades geométricas con puntos dentro/fuera y polígonos inválidos.
-  - [test/in_process/simulation.config.spec.ts](test/in_process/simulation.config.spec.ts): cubre utilidades de simulación (`calculateDistance`, `calculateTravelTime`, `interpolatePosition`) y constantes de `SIMULATION_CONFIG`.
+- Pruebas in-process (unidad/componentes) bajo test/in_process:
+  - test/in_process/robot.entity.spec.ts: valida reglas de dominio del `Robot` (rangos de `battery` y `speed`, cardinalidad de `zoneCoordinates`, `mode` válido, `stationId` no vacío) con escenarios negativos y positivos; además prueba getters `isOnMission` e `isAtStation`.
+  - test/in_process/defect-history.spec.ts: verifica creación/validación de `DefectHistory` (fechas válidas, resolved/resolvedAt/resolvedBy), mutaciones inmutables `addDefect()` y `resolveDefect()`, y consultas `getUnresolvedDefects()` y `hasCriticalDefects()` con casos positivos y negativos.
+  - test/in_process/point-in-polygon.spec.ts: comprueba utilidades geométricas con puntos dentro/fuera y polígonos inválidos.
+  - test/in_process/simulation.config.spec.ts: cubre utilidades de simulación (`calculateDistance`, `calculateTravelTime`, `interpolatePosition`) y constantes de `SIMULATION_CONFIG`.
 
-- Pruebas out-of-process (E2E HTTP) bajo [test/out_process](test/out_process):
-  - [test/out_process/api.e2e-spec.ts](test/out_process/api.e2e-spec.ts): arranca la app con `@nestjs/testing` y usa `supertest` para cubrir el ciclo de vida completo:
+- Pruebas out-of-process (E2E HTTP) bajo test/out_process:
+  - test/out_process/api.e2e-spec.ts: arranca la app con `@nestjs/testing` y usa `supertest` para cubrir el ciclo de vida completo:
     - Robots: `POST /robots/inject` (201), `GET /robots` (200), `GET /robots/:id` (200), `PUT /robots/:id` (200), `POST /robots/:id/decommission` (200), `DELETE /robots/:id` (200), y verificación de `404` tras borrado.
     - Logs: `POST /robot-logs` (201), `GET /robot-logs` (200), `GET /robot-logs/:id` (200), `GET /robots/:robotId/logs` (200).
     - Incluye escenarios positivos y un escenario negativo representativo (`404` al consultar robot eliminado).
