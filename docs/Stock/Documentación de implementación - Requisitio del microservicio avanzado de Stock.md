@@ -19,6 +19,15 @@ Nos presentamos al **nivel de acabado de 10 puntos**.
 - [x] Aplicación basada en microservicios básica: cumplida.
 - [x] Aplicación basada en microservicios avanzada: cumplida (4/4).
 
+### Funcionalidades avanzadas de la aplicación (4/4)
+
+La justificación detallada de estas funcionalidades se encuentra en el apartado común.
+
+- [x] Incorporación de add-ons al modelo de precios, permitiendo la adquisición de paquetes adicionales de tokens.
+- [x] Implementación de un API Gateway con capacidades avanzadas, incluyendo autenticación JWT centralizada, gestión de roles y enrutado de peticiones.
+- [x] Comunicación asíncrona entre todos los microservicios mediante un sistema de colas de mensajes basado en RabbitMQ.
+- [x] Implementación de un mecanismo de compensación para transacciones distribuidas mediante el patrón SAGA, permitiendo la reversión controlada de operaciones.
+
 Antes de pasar a una definición más extensa de la documentación, se definirá en este apartado los apartados relevantes para el nivel de acabado presentado por este microservicio:
 
 **Microservicio básico**:
