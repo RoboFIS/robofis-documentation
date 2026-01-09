@@ -222,7 +222,7 @@ Este documento justifica y explica cómo se ha implementado cada uno de los requ
   3.  Al ejecutar, visualiza la llamada real a `.../api/v1/...`, el cuerpo de la respuesta y las cabeceras.
 
 - **Accesibilidad**:
-  * **URL de Documentación**: `http://localhost:3002/api/v1/docs`
+  * **URL de Documentación**: `/api/v1/docs/users`
 
 ## 7) Persistencia con MongoDB (NoSQL)
 
