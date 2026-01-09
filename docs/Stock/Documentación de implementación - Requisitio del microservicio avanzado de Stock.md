@@ -10,6 +10,24 @@ Este documento justifica y describe cómo se han implementado los distintos requ
 El objetivo de este documento es servir como referencia técnica para comprender el diseño, la arquitectura y las decisiones tomadas durante el desarrollo del microservicio.
 
 ### Nivel de acabado del microservicio
+
+Nos presentamos al **nivel de acabado de 10 puntos**.
+
+### Cobertura por nivel
+- [x] Microservicio básico: cumplido.
+- [x] Microservicio avanzado: cumplido (8/6).
+- [x] Aplicación basada en microservicios básica: cumplida.
+- [x] Aplicación basada en microservicios avanzada: cumplida (4/4).
+
+### Funcionalidades avanzadas de la aplicación (4/4)
+
+La justificación detallada de estas funcionalidades se encuentra en el apartado común.
+
+- [x] Incorporación de add-ons al modelo de precios, permitiendo la adquisición de paquetes adicionales de tokens.
+- [x] Implementación de un API Gateway con capacidades avanzadas, incluyendo autenticación JWT centralizada, gestión de roles y enrutado de peticiones.
+- [x] Comunicación asíncrona entre todos los microservicios mediante un sistema de colas de mensajes basado en RabbitMQ.
+- [x] Implementación de un mecanismo de compensación para transacciones distribuidas mediante el patrón SAGA, permitiendo la reversión controlada de operaciones.
+
 Antes de pasar a una definición más extensa de la documentación, se definirá en este apartado los apartados relevantes para el nivel de acabado presentado por este microservicio:
 
 **Microservicio básico**:
@@ -34,6 +52,9 @@ Antes de pasar a una definición más extensa de la documentación, se definirá
 - Se ha implementado un mecanismo de autenticación basado en JWT
 - Se ha usado RabbitMQ para realizar una comunicación asíncrona con otros microservicios
 - Se ha implementado el patrón Unit Of Work para garantizar la consistencia de transacciones en la base de datos
+
+**Otros a tener en cuenta**:
+- Se ha usado bullmq para la programación de jobs de gestión de las reservas
 
 ---
 
@@ -363,3 +384,11 @@ Nota: Los validadores están puestos en la capa de aplicación porque no son val
 
 - **Dónde**:
   - `common/infrastructure/auth/*`, `common/infrastructure/decorators`, `common/infrastructure/guards`
+
+## 13) Jobs
+
+- **Implementación**:
+  - Para gestionar las reservas, se han implementado una serie de jobs haciendo uso de bullmq que se lanzan diariamente y se programan para los momentos de realización de las reservas. Es importantes tenerlos en cuenta a la hora del flujo.
+
+- **Dónde**:
+  - `stock/infrastructure/jobs/*`
